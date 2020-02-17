@@ -13,7 +13,6 @@ class AuthController extends Controller
 {
     public function cadastro(Request $request)
     {
-        $teste = $request->all();
         $validator = Validator::make($request->all(), [
             'nome' => 'required|string',
             'sobrenome' => 'required|string',
@@ -37,22 +36,34 @@ class AuthController extends Controller
         ]);
         $user->save();
         return response()->json([
+            'status' => 201,
             'message' => 'Usuário cadastrado com sucesso.'
         ], 201);
     }
 
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
+
+        if ($validator->fails()){
+            return response()->json([
+                'status' => 401,
+                'mensagem' => $validator->errors()
+            ], 401);
+        }
+
         $credentials = request(['email', 'password']);
+
         if(!Auth::attempt($credentials))
             return response()->json([
-                'message' => 'Unauthorized'
+                'status' => 401,
+                'mensagem' => 'Não Autorizado'
             ], 401);
+
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
@@ -60,8 +71,8 @@ class AuthController extends Controller
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
+            'access_token' => $tokenResult->accessToken,
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString()
@@ -72,7 +83,8 @@ class AuthController extends Controller
     {
         $request->user()->token()->revoke();
         return response()->json([
-            'message' => 'Successfully logged out'
+            'status' => 201,
+            'mensagem' => 'Logout efetuado com sucesso.'
         ]);
     }
 
