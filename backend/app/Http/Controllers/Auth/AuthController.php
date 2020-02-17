@@ -90,6 +90,9 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        return response()->json([
+            'status' => 201,
+            $request->user()
+        ]);
     }
 }
