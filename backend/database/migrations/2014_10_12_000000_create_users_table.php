@@ -18,10 +18,15 @@ class CreateUsersTable extends Migration
             $table->string('nome')->nullable(false);
             $table->string('sobrenome')->nullable(true);
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->boolean('active')->default(false);
+            $table->string('activation_token')->nullable(true);
+            $table->timestamp('email_verified_at')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

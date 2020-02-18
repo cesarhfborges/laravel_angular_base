@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
-
+    use Notifiable, HasApiTokens, SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +21,8 @@ class User extends Authenticatable
         'sobrenome',
         'email',
         'password',
+        'active',
+        'activation_token'
     ];
 
     /**
@@ -29,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'activation_token'
     ];
 
     /**

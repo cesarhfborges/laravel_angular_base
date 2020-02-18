@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\CadastroActivate;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -32,9 +34,12 @@ class AuthController extends Controller
             'sobrenome' => $request->sobrenome,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'email_verified_at' => \Carbon\Carbon::now()
+            'activation_token' => Str::random(60)
         ]);
-        $user->save();
+//        $user->save();
+
+//        $user->notify(new CadastroActivate($user));
+
         return response()->json([
             'status' => 201,
             'message' => 'Usuário cadastrado com sucesso.'
