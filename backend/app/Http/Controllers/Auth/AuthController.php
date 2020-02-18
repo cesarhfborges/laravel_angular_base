@@ -36,7 +36,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
             'activation_token' => Str::random(60)
         ]);
-//        $user->save();
+        $user->save();
 
 //        $user->notify(new CadastroActivate($user));
 
