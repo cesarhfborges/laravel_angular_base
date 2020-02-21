@@ -4,5 +4,11 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  config: {
+    urlApi: 'http://127.0.0.1:8000/',
+    url: 'http://127.0.0.1:4200/',
+    nomeSistema: 'EverDesk',
+    logoUrl: 'assets/img/logo.png',
+  }
 };

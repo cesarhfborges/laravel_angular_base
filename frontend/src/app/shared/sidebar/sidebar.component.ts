@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { customAnimations } from "../animations/custom-animations";
 import { ConfigService } from '../services/config.service';
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: "app-sidebar",
@@ -14,13 +15,14 @@ import { ConfigService } from '../services/config.service';
 export class SidebarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('toggleIcon', {static: false} ) toggleIcon: ElementRef;
+  enviroment = environment;
   public menuItems: any[];
   depth: number;
   activeTitle: string;
   activeTitles: string[] = [];
   expanded: boolean;
   nav_collapsed_open = false;
-  logoUrl = 'assets/img/logo.png';
+  logoUrl = this.enviroment.config.logoUrl;
   public config: any = {};
 
 
