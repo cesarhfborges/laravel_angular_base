@@ -1,30 +1,54 @@
-import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import {Router} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
+import {User} from "../interfaces/user.model";
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
-  token: string;
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        })
+    };
 
-  constructor() {}
+    constructor(private http: HttpClient, private router: Router) { }
 
-  signupUser(email: string, password: string) {
-    //your code for signing up the new user
-  }
+    check(): boolean {
+        return !!localStorage.getItem('user');
+    }
 
-  signinUser(email: string, password: string) {
-    //your code for checking credentials and getting tokens for for signing in user
-  }
+    login(credentials: {email: string, password: string}): Observable<boolean> {
+        return this.http.post<any>(`${environment.config.urlApi}/auth/login`, credentials).do(data => {
+                localStorage.setItem('token', data.access_token);
+                localStorage.setItem('user', btoa(JSON.stringify(data.user)));
+            });
+    }
 
-  logout() {   
-    this.token = null;
-  }
+    logout(): void {
+        this.http.get(`${environment.config.urlApi}/auth/logout`).subscribe(response => {
+            console.log(response);
+            localStorage.clear();
+            this.router.navigate(['login']);
+        });
+    }
 
-  getToken() {    
-    return this.token;
-  }
+    getUser(): User {
+        return localStorage.getItem('user') ? JSON.parse(atob(localStorage.getItem('user'))) : null;
+    }
 
-  isAuthenticated() {
-    // here you can check if user is authenticated or not through his token 
-    return true;
-  }
+    setUser(): Promise<boolean> {
+        return this.http.get<any>(`${environment.config.urlApi}/auth/me`).toPromise()
+            .then(data => {
+                if (data.user) {
+                    localStorage.setItem('user', btoa(JSON.stringify(data.user)));
+                    return true;
+                }
+                return false;
+            });
+    }
 }

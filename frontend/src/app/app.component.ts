@@ -11,8 +11,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     subscription: Subscription;
 
-    constructor(private router: Router) {
-    }
+    constructor(private router: Router) {}
 
     ngOnInit() {
         this.subscription = this.router.events

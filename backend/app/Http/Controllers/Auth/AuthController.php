@@ -76,11 +76,13 @@ class AuthController extends Controller
             $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
         return response()->json([
+            'status' => 200,
             'token_type' => 'Bearer',
             'access_token' => $tokenResult->accessToken,
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
-            )->toDateTimeString()
+            )->toDateTimeString(),
+            'user' => Auth::user()
         ]);
     }
 
