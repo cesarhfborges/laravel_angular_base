@@ -1,4 +1,8 @@
 // @import "sass/bootstrap/variables";
-@import "../../node_modules/bootstrap/scss/bootstrap-reboot";
-@import "../../node_modules/bootstrap/scss/bootstrap";
-// @import "../../node_modules/bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/bootstrap-reboot";
+@import "~bootstrap/scss/bootstrap";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import "~bootstrap/scss/bootstrap-grid";

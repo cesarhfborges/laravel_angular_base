@@ -20,7 +20,7 @@
                                     <div class="col-lg-6 col-md-12 bg-white px-4 pt-3">
                                         <h4 class="card-title mb-2">Login</h4>
                                         <p class="card-text mb-3">
-                                            Welcome back, please login to your account.
+                                            Seja Bem Vindo ao EverDesk
                                         </p>
                                         <input
                                                 type="text"
@@ -34,6 +34,12 @@
                                                 class="form-control mb-3"
                                                 placeholder="Password"
                                         />
+                                        <div class="alert alert-danger alert-dismissible" role="alert" *ngIf="errorCredentials">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            Usuário ou senha inválidos.
+                                        </div>
                                         <div class="d-flex justify-content-between mt-2">
                                             <div class="remember-me">
                                                 <div class="custom-control custom-checkbox custom-control-inline mb-3">
@@ -46,7 +52,7 @@
                                                             value="true"
                                                     />
                                                     <label class="custom-control-label" for="remember_me">
-                                                        Remember Me
+                                                        Manter logado
                                                     </label>
                                                 </div>
                                             </div>
@@ -54,19 +60,13 @@
                                                 <a [routerLink]="['/pages/forgotpassword']"
                                                    class="text-decoration-none text-primary"
                                                 >
-                                                    Forgot Password ?
+                                                    Esqueci Minha Senha
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="fg-actions d-flex justify-content-between">
                                             <div class="login-btn">
-                                                <button class="btn btn-outline-primary">
-                                                    <a
-                                                            [routerLink]="['/cadastro']"
-                                                            class="text-decoration-none"
-                                                    >Cadastro</a
-                                                    >
-                                                </button>
+                                                <a [routerLink]="['/cadastro']" class="btn btn-outline-primary text-decoration-none">Cadastro</a>
                                             </div>
                                             <div class="recover-pass">
                                                 <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
@@ -74,28 +74,22 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="alert alert-danger alert-dismissible" role="alert" *ngIf="errorCredentials">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                            Usuário ou senha inválidos.
-                                        </div>
-                                        <hr class="m-0"/>
-                                        <div class="d-flex justify-content-between mt-3">
-                                            <div class="option-login">
-                                                <h6 class="text-decoration-none text-primary">
-                                                    Or Login With
-                                                </h6>
-                                            </div>
-                                            <div class="social-login-options">
-                                                <a class="btn btn-social-icon mr-2 btn-facebook">
-                                                    <span class="fa fa-facebook"></span>
-                                                </a>
-                                                <a class="btn btn-social-icon mr-2 btn-twitter">
-                                                    <span class="fa fa-twitter"></span>
-                                                </a>
-                                            </div>
-                                        </div>
+<!--                                        <hr class="m-0"/>-->
+<!--                                        <div class="d-flex justify-content-between mt-3">-->
+<!--                                            <div class="option-login">-->
+<!--                                                <h6 class="text-decoration-none text-primary">-->
+<!--                                                    Or Login With-->
+<!--                                                </h6>-->
+<!--                                            </div>-->
+<!--                                            <div class="social-login-options">-->
+<!--                                                <a class="btn btn-social-icon mr-2 btn-facebook">-->
+<!--                                                    <span class="fa fa-facebook"></span>-->
+<!--                                                </a>-->
+<!--                                                <a class="btn btn-social-icon mr-2 btn-twitter">-->
+<!--                                                    <span class="fa fa-twitter"></span>-->
+<!--                                                </a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </form>

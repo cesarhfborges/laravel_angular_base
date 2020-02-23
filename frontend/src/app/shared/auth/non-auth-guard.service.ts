@@ -11,7 +11,6 @@ export class NonAuthGuard implements CanActivate, CanActivateChild {
     constructor(private auth: AuthService, private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-        console.log(state.url);
         if (!this.auth.check()) {
             return true;
         }

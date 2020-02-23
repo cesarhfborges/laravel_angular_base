@@ -21,63 +21,73 @@
                   <p class="card-text mb-3">
                     Fill the below form to create a new account.
                   </p>
-                  <input
-                          type="text"
-                          class="form-control mb-3"
-                          placeholder="Name"
-                  />
-                  <input
-                          type="email"
-                          class="form-control mb-3"
-                          placeholder="Email"
-                  />
-                  <input
-                          type="password"
-                          class="form-control mb-3"
-                          placeholder="Password"
-                  />
-                  <input
-                          type="password"
-                          class="form-control mb-3"
-                          placeholder="Confirm Password"
-                  />
-                  <div
-                          class="custom-control custom-checkbox custom-control-inline mb-3"
-                  >
+                  <form [formGroup]="cadastroFrom" (ngSubmit)="onSubmit()">
                     <input
-                            type="checkbox"
-                            id="customCheckboxInline1"
-                            name="customCheckboxInline1"
-                            class="custom-control-input"
-                            checked
+                            type="text"
+                            formControlName="nome"
+                            class="form-control mb-3"
+                            placeholder="Name"
                     />
-                    <label
-                            class="custom-control-label"
-                            for="customCheckboxInline1"
+                    <input
+                            type="text"
+                            formControlName="sobrenome"
+                            class="form-control mb-3"
+                            placeholder="Sobrenome"
+                    />
+                    <input
+                            type="email"
+                            formControlName="email"
+                            class="form-control mb-3"
+                            placeholder="Email"
+                    />
+                    <input
+                            type="password"
+                            formControlName="password"
+                            class="form-control mb-3"
+                            placeholder="Password"
+                    />
+                    <input
+                            type="password"
+                            formControlName="password_confirmation"
+                            class="form-control mb-3"
+                            placeholder="Confirm Password"
+                    />
+                    <div
+                            class="custom-control custom-checkbox custom-control-inline mb-3"
                     >
-                      I accept the terms & conditions.
-                    </label>
-                  </div>
-                  <div class="fg-actions d-flex justify-content-between">
-                    <div class="login-btn">
-                      <button class="btn btn-outline-primary">
-                        <a
-                                href="login-page.html"
-                                class="text-decoration-none"
-                                [routerLink]="['/login']"
-                        >
-                          Voltar para o login
-                        </a>
-                      </button>
+                      <input
+                              type="checkbox"
+                              id="customCheckboxInline1"
+                              name="customCheckboxInline1"
+                              class="custom-control-input"
+                              checked
+                      />
+                      <label
+                              class="custom-control-label"
+                              for="customCheckboxInline1"
+                      >
+                        I accept the terms & conditions.
+                      </label>
                     </div>
-                    <div class="recover-pass">
-                      <button class="btn btn-primary">
-                        <a class="text-decoration-none text-white">
-                          Register
-                        </a>
-                      </button>
+                    <div class="fg-actions d-flex justify-content-between">
+                      <div class="login-btn">
+                        <button class="btn btn-outline-primary">
+                          <a
+                                  href="login-page.html"
+                                  class="text-decoration-none"
+                                  [routerLink]="['/login']"
+                          >
+                            Voltar para o login
+                          </a>
+                        </button>
+                      </div>
+                      <div class="recover-pass">
+                          <button type="submit" class="btn btn-primary text-decoration-none text-white" [disabled]="cadastroFrom.invalid">
+                            <div class="text-decoration-none text-white">Cadastro</div>
+                          </button>
+                      </div>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>

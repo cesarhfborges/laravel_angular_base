@@ -21,6 +21,13 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "node_modules/nouislider/distribute/nouislider.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/sweetalert2/dist/sweetalert2.min.css",
+              "node_modules/dragula/dist/dragula.css",
+              "node_modules/material-icons/css/material-icons.min.css",
+              "src/assets/css/hopscotch.css",
+              "src/assets/css/quill.snow.css",
               "src/assets/css/demo.css",
               "src/assets/sass/app.scss",
               "src/styles.css"

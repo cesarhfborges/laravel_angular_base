@@ -19,6 +19,7 @@ import { SidebarLinkDirective } from './directives/sidebarlink.directive';
 import { SidebarListDirective } from './directives/sidebarlist.directive';
 import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
 import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
     exports: [
@@ -37,7 +38,8 @@ import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
         CommonModule,
         NgbModule,
         TranslateModule,
-        PerfectScrollbarModule
+        PerfectScrollbarModule,
+        SweetAlert2Module
     ],
     declarations: [
         FooterComponent,

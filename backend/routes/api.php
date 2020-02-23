@@ -22,3 +22,5 @@ Route::group([
         Route::get('perfil', 'AuthController@user');
     });
 });
+
+Route::resource('usuarios', 'UsersController')->only(['index']);

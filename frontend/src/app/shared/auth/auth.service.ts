@@ -16,6 +16,14 @@ export class AuthService {
         })
     };
 
+    httpOptionsLogged = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Authorization': 'Bearer '+localStorage.getItem('token')
+        })
+    };
+
     constructor(private http: HttpClient, private router: Router) { }
 
     check(): boolean {
@@ -23,14 +31,22 @@ export class AuthService {
     }
 
     login(credentials: {email: string, password: string}): Observable<boolean> {
-        return this.http.post<any>(`${environment.config.urlApi}/auth/login`, credentials).do(data => {
+        return this.http.post<any>(`${environment.config.urlApi}/auth/login`, credentials, this.httpOptions).do(data => {
                 localStorage.setItem('token', data.access_token);
                 localStorage.setItem('user', btoa(JSON.stringify(data.user)));
             });
     }
 
+    cadastro(credentials: {nome: string, email: string, password: string}): Observable<boolean> {
+        return this.http.post<any>(`${environment.config.urlApi}/auth/cadastro`, credentials, this.httpOptions).do(data => {
+            console.log(data);
+            // localStorage.setItem('token', data.access_token);
+            // localStorage.setItem('user', btoa(JSON.stringify(data.user)));
+        });
+    }
+
     logout(): void {
-        this.http.get(`${environment.config.urlApi}/auth/logout`).subscribe(response => {
+        this.http.get(`${environment.config.urlApi}/auth/logout`, this.httpOptionsLogged).subscribe(response => {
             console.log(response);
             localStorage.clear();
             this.router.navigate(['login']);

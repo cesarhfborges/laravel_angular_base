@@ -13,3 +13,8 @@
 @import url("../src/assets/css/data-table/index.css");
 @import url("../src/assets/css/data-table/icons.css");
 @import url("../src/assets/css/demo.css"); */
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';

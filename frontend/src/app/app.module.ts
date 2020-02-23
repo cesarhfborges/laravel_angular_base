@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +19,7 @@ import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 
 import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -39,6 +39,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       SharedModule,
       HttpClientModule,
       NgbModule.forRoot(),
+      SweetAlert2Module.forRoot(),
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
