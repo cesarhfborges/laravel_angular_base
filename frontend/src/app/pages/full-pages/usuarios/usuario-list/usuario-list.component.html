@@ -1,0 +1,80 @@
+<section id="simple">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4 class="card-title">Simple Table</h4>
+                        </div>
+                        <div class="col-4 d-flex justify-content-between">
+                            <button (click)="ExportTOExcel()" class="btn btn-raised btn-primary">Exportar para Excel
+                            </button>
+                            <button class="btn btn-raised btn-info">Novo Usuário</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-4"></div>
+                            <div class="col-4"></div>
+                            <div class="col-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Sobrenome</th>
+                                        <th scope="col">Email</th>
+                                        <th class="text-center" scope="col">Status</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let usuario of usuarios">
+                                            <th scope="row">{{ usuario.id }}</th>
+                                            <td>{{ usuario.nome }}</td>
+                                            <td>{{ usuario.sobrenome }}</td>
+                                            <td>{{ usuario.email }}</td>
+                                            <td class="text-center">
+                                                <ng-template [ngIfElse]="status" [ngIf]="usuario.active">
+                                                    <span class="badge badge-pill badge-success">ATIVO</span>
+                                                </ng-template>
+                                                <ng-template #status>
+                                                    <span class="badge badge-pill badge-danger">INATIVO</span>
+                                                </ng-template>
+                                            </td>
+                                            <td class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-outline-success m-0 mr-1" [routerLink]="['/usuarios', usuario.id]">
+                                                    <i class="fa fa-edit"></i>
+                                                    Editar
+                                                </button>
+                                                <button type="button" class="btn btn-outline-danger m-0">
+                                                    <i class="fa fa-edit"></i>
+                                                    Editar
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!--                                <div class="d-flex justify-content-between p-2">-->
+                                <!--                                    <ngb-pagination [collectionSize]="usuarios.length" [(page)]="page" [pageSize]="pageSize">-->
+                                <!--                                    </ngb-pagination>-->
+
+                                <!--                                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">-->
+                                <!--                                        <option [ngValue]="2">2 items per page</option>-->
+                                <!--                                        <option [ngValue]="4">4 items per page</option>-->
+                                <!--                                        <option [ngValue]="6">6 items per page</option>-->
+                                <!--                                    </select>-->
+                                <!--                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

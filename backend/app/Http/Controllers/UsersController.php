@@ -38,15 +38,14 @@ class UsersController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        return response()->json([
+            'status' => 200,
+            'data' => $usuario
+        ], 200);
     }
 
     /**

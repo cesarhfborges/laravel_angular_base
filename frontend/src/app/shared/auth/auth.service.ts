@@ -50,6 +50,9 @@ export class AuthService {
             console.log(response);
             localStorage.clear();
             this.router.navigate(['login']);
+        }, error => {
+            localStorage.clear();
+            this.router.navigate(['login']);
         });
     }
 

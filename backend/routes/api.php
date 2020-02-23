@@ -23,4 +23,8 @@ Route::group([
     });
 });
 
-Route::resource('usuarios', 'UsersController')->only(['index']);
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('usuarios', 'UsersController')->only(['index', 'show']);
+});

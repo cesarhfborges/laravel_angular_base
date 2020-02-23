@@ -38,8 +38,7 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
         CommonModule,
         NgbModule,
         TranslateModule,
-        PerfectScrollbarModule,
-        SweetAlert2Module
+        PerfectScrollbarModule
     ],
     declarations: [
         FooterComponent,

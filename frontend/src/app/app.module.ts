@@ -39,7 +39,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       SharedModule,
       HttpClientModule,
       NgbModule.forRoot(),
-      SweetAlert2Module.forRoot(),
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
@@ -47,7 +46,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
           deps: [HttpClient]
         }
       }),
-      PerfectScrollbarModule
+      PerfectScrollbarModule,
+      SweetAlert2Module.forRoot()
     ],
     providers: [
       AuthService,
